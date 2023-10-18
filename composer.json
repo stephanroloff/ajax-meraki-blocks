@@ -1,0 +1,9 @@
+{
+    "name": "meraki/ajax-meraki-blocks",
+    "autoload": {
+        "psr-4": {
+            "AjaxMerakiBlocks\\": "classes/"
+        }
+    },
+    "require": {}
+}
