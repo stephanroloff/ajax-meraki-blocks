@@ -27,5 +27,5 @@
  define('MY_PLUGIN_PATH', plugin_dir_url(__FILE__));
  
  $RegisterBlocks = new RegisterBlocks();
- $AjaxRestApi = new AjaxRestApi();
-
+ $AjaxGetFromRestApi = new AjaxGetFromRestApi();
+ $AjaxPostToDatabase = new AjaxPostToDatabase();

@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "create-block/ajax-get-block-php",
+	"name": "create-block/ajax-get-rest-block",
 	"version": "0.1.0",
-	"title": "Ajax GET Block PHP Example",
+	"title": "Ajax GET from REST Block Example",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Ajax GET Block PHP Example",
+	"description": "Ajax GET from REST Block Example",
 	"supports": {
 		"html": false
 	},

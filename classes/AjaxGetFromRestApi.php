@@ -2,17 +2,18 @@
 
 namespace AjaxMerakiBlocks;
 
-if(! class_exists('AjaxMerakiBlocks\AjaxRestApi')){
-    class AjaxRestApi {
+if(! class_exists('AjaxMerakiBlocks\AjaxGetFromRestApi')){
+    class AjaxGetFromRestApi {
 
         function __construct(){
+            add_action('wp_enqueue_scripts', array($this, 'load_api_with_ajax'));
+
             add_action('wp_ajax_load_api', array($this, 'load_data_from_api'));
             add_action('wp_ajax_nopriv_load_api', array($this,'load_data_from_api'));
-            add_action('wp_enqueue_scripts', array($this, 'load_api_with_ajax'));
         }
 
         function load_api_with_ajax() {
-            wp_enqueue_script('my-script', MY_PLUGIN_PATH . '/ajax-get-block-php/frontend.js', array('jquery'), '1.0', true);
+            wp_enqueue_script('my-script', MY_PLUGIN_PATH . '/ajax-get-rest-block/frontend.js', array('jquery'), '1.0', true); //ARREGLAR??
 
             wp_localize_script('my-script', 'ajax_load_api', array(
                 'ajaxurl' => admin_url('admin-ajax.php'),

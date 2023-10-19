@@ -31,7 +31,8 @@ if(! class_exists('AjaxMerakiBlocks\RegisterBlocks')){
             $parent_directory = dirname($current_directory); // Route one level above
 
             register_block_type( $parent_directory . '/build/ajax-get-block' );
-            register_block_type( $parent_directory . '/build/ajax-get-block-php' );
+            register_block_type( $parent_directory . '/build/ajax-get-rest-block' );
+            register_block_type( $parent_directory . '/build/ajax-post-db-block' );
         }
     }
 }

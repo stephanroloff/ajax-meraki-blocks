@@ -8,8 +8,11 @@ jQuery(document).ready(function ($) {
             data: {
                 action: 'load_api'
             },
-            success: function (response) {
+            success: function (response, textStatus, XMLHttpRequest) {
                 $('#load-response').html(response);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('#load-response').html(errorThrown);
             }
         });
     });
