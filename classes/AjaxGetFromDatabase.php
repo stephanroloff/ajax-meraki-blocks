@@ -34,7 +34,7 @@ if(! class_exists('AjaxMerakiBlocks\AjaxGetFromDatabase')){
                 $user_data = get_user_meta($user_id, $meta_key, true);
                 echo json_encode($user_data);
             } else {
-                echo 'Usuario no autenticado.';
+                echo 'Unauthenticated user';
             }
             wp_die();
         }

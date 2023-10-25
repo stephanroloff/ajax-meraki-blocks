@@ -11,29 +11,35 @@ if(! class_exists('AjaxMerakiBlocks\RegisterBlocks')){
 
         function create_ajax_blocks() {
 
-            // $folder = dirname(__FILE__) . '/build';
-            // $name_folder = array();
-            // $files = scandir($folder);
-        
-            // foreach($files as $file) {
-            //     if(is_dir($folder . '/' . $file)) {
-            //         $name_folder[] = $file;
-            //     }
-            // }
-        
-            // foreach ($name_folder as $key => $value) {
-            //     if($value == "." || $value == ".." || $value == "images") continue;
-            //     register_block_type( dirname(__FILE__) . '/build' . '/' . $value );
-            // }
-
-
             $current_directory = dirname(__FILE__); // Currently Route
-            $parent_directory = dirname($current_directory); // Route one level above
+            $blocks_directory = dirname($current_directory) . '/build';
 
-            register_block_type( $parent_directory . '/build/ajax-get-block' );
-            register_block_type( $parent_directory . '/build/ajax-get-rest-block' );
-            register_block_type( $parent_directory . '/build/ajax-get-db-block' );
-            register_block_type( $parent_directory . '/build/ajax-post-db-block' );
+
+            if (is_dir($blocks_directory)) {
+                $block_files = scandir($blocks_directory);
+
+                foreach ($block_files as $file) {
+                    // Ignore files that are not directories and those that begin with a dot
+                    if ((!is_dir($blocks_directory . '/' . $file)) || $file[0] === '.') {
+                        continue;
+                    }
+
+                    $block_path = $blocks_directory . '/' . $file;
+                    register_block_type($block_path);
+                }
+            }
+
+            // $current_directory = dirname(__FILE__); // Currently Route
+            // $parent_directory = dirname($current_directory); // Route one level above
+
+            // register_block_type( $parent_directory . '/build/ajax-get-block' );
+            // register_block_type( $parent_directory . '/build/ajax-get-rest-block' );
+            // register_block_type( $parent_directory . '/build/ajax-get-db-block' );
+            // register_block_type( $parent_directory . '/build/ajax-post-db-block' );
         }
     }
 }
+
+
+
+
