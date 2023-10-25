@@ -9,21 +9,7 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
     class AjaxPostToDatabase {
 
         function __construct(){
-            add_action('wp_enqueue_scripts', array($this, 'enqueue_my_scripts'));
-
-            add_action('wp_ajax_mi_funcion_ajax', array($this,'mi_funcion_ajax'));
-            add_action('wp_ajax_nopriv_mi_funcion_ajax', array($this,'mi_funcion_ajax'));
-        }
-
-        function enqueue_my_scripts() {
-            wp_enqueue_script('mi-script-post', MY_PLUGIN_PATH . '/src/ajax-post-db-block/frontend.js', array('jquery'), '1.0', true);
-        
-            $my_script_vars = array(
-                'ajax_url' => admin_url('admin-ajax.php'),
-                'security' => wp_create_nonce('mi-ajax-nonce')
-            );
-        
-            wp_localize_script('mi-script-post', 'my_script_vars', $my_script_vars);
+            $ConectionFrontendBackend = new ConectionFrontendBackend('mi_funcion_ajax', array($this, 'mi_funcion_ajax'));
         }
 
         function mi_funcion_ajax() {
