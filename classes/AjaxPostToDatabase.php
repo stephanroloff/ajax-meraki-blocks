@@ -15,14 +15,6 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
             add_action('wp_ajax_nopriv_mi_funcion_ajax', array($this,'mi_funcion_ajax'));
         }
 
-        function mi_funcion_ajax() {
-            check_ajax_referer('mi-ajax-nonce', 'security');
-            $mi_parametro = $_POST['mi_parametro'];
-            $this->saveData($mi_parametro);
-            wp_die();
-        }
-        
-
         function enqueue_my_scripts() {
             wp_enqueue_script('mi-script-post', MY_PLUGIN_PATH . '/src/ajax-post-db-block/frontend.js', array('jquery'), '1.0', true);
         
@@ -32,6 +24,13 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
             );
         
             wp_localize_script('mi-script-post', 'my_script_vars', $my_script_vars);
+        }
+
+        function mi_funcion_ajax() {
+            check_ajax_referer('mi-ajax-nonce', 'security');
+            $mi_parametro = $_POST['mi_parametro'];
+            $this->saveData($mi_parametro);
+            wp_die();
         }
 
         function saveData($mi_parametro){

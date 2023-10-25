@@ -11,8 +11,8 @@ if(! class_exists('AjaxMerakiBlocks\RegisterBlocks')){
 
         function create_ajax_blocks() {
 
-            $current_directory = dirname(__FILE__); // Currently Route
-            $blocks_directory = dirname($current_directory) . '/build';
+            $current_directory = dirname(__FILE__); //Currently Route
+            $blocks_directory = dirname($current_directory) . '/build'; //One Route above
 
 
             if (is_dir($blocks_directory)) {
