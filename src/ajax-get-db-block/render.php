@@ -14,18 +14,16 @@ $wrapper_attributes = get_block_wrapper_attributes();
 
 ?>
 <div <?php echo $wrapper_attributes?>>
-    <p>THIS an Ajax POST to DB Block!</p>
+    <p>THIS an Ajax GET from DB Block!</p>
     <p>Attribute: <?php echo $attributes['amountSelected']?></p>
     
     <?php if(get_current_user_id()==0): ?>
-        <p>Form available just for logged users</p>
+        <p>Results available just for logged users</p>
     <?php else: ?>
-        <form id="mi-formulario">
-        <input type="text" name="mi_valor" id="mi-valor" placeholder="Ingresa un valor">
+        <p>Results:</p>
         <input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id(); ?>">
-        <button type="submit" id="mi-boton">Submit</button>
-    </form>
-    <div id="resultado"></div>
+        <div id="loader">Loading...</div>
+        <div id="ajax-get-from-db"></div>
     <?php endif; ?>
 </div>
     

@@ -1,4 +1,5 @@
 //JAVASCRIPT JUST FRONTEND
+//This Block is send data to AjaxGetFromRestApi.php
 
 jQuery(document).ready(function ($) {
     $('#load-api').click(function () {

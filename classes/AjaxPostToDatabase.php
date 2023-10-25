@@ -2,6 +2,9 @@
 
 namespace AjaxMerakiBlocks;
 
+/**
+ * This class represents the process of saving data in the Wordpress database.
+ */
 if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
     class AjaxPostToDatabase {
 
@@ -14,21 +17,11 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
 
         function mi_funcion_ajax() {
             check_ajax_referer('mi-ajax-nonce', 'security');
-            
-            // Obtén el arreglo enviado desde el frontend
             $mi_parametro = $_POST['mi_parametro'];
-            
-            // Accede a los valores dentro del arreglo
-            $valor_texto = sanitize_text_field($mi_parametro['valor_texto']);
-            $user_id = absint($mi_parametro['user_id']);
-            
-            // Devuelve una respuesta al cliente
-            echo 'Respuesta exitosa 1: ' . $valor_texto;
-            echo '<pre>';
-            echo 'Respuesta exitosa 2: ' . $user_id;
-        
+            $this->saveData($mi_parametro);
             wp_die();
         }
+        
 
         function enqueue_my_scripts() {
             wp_enqueue_script('mi-script-post', MY_PLUGIN_PATH . '/src/ajax-post-db-block/frontend.js', array('jquery'), '1.0', true);
@@ -39,6 +32,54 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
             );
         
             wp_localize_script('mi-script-post', 'my_script_vars', $my_script_vars);
+        }
+
+        function saveData($mi_parametro){
+            
+            $valor_texto = sanitize_text_field($mi_parametro['valor_texto']);
+            $user_id = absint($mi_parametro['user_id']);
+            $meta_key = 'days_of_the_year';
+            
+            if (metadata_exists('user', $user_id, $meta_key)) {
+
+                $meta_value = get_user_meta($user_id, $meta_key, true);
+
+                date_default_timezone_set('Europe/Berlin');
+                $fechaHoraActual = date('Y-m-d H:i:s');
+                array_push($meta_value, $fechaHoraActual);
+
+                echo 'Metadato existe, te lo mostramos:';
+                echo '<br>';
+                echo 'user_id: ' . $user_id;
+                echo '<br>';
+                echo 'meta_key: ' . $meta_key;
+                echo '<br>';
+                echo '<pre>';
+                var_dump($meta_value);
+                echo '</pre>';
+                echo '<br>';
+
+                update_user_meta($user_id, $meta_key, $meta_value);
+                
+                // delete_user_meta($user_id, $meta_key);
+                // echo 'Dato Borrado con exito';
+            } else {
+                echo 'Metadata doesnt exist, we create it...';
+                date_default_timezone_set('Europe/Berlin');
+                $fechaHoraActual = date('Y-m-d H:i:s');
+
+                $array_fechas = array($fechaHoraActual);
+                var_dump($array_fechas);
+
+                add_user_meta($user_id, $meta_key, $array_fechas);
+
+                echo '<br>';
+                echo 'user_id: ' . $user_id;
+                echo '<br>';
+                echo 'meta_key: ' . $meta_key;
+                echo '<br>';
+                echo 'meta value: ' . $fechaHoraActual;
+            }
         }
     }
 }

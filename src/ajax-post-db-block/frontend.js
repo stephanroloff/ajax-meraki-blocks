@@ -4,7 +4,6 @@ jQuery(document).ready(function($) {
 
         var datos = {
             action: 'mi_funcion_ajax', // Nombre de la acción en el servidor
-            // mi_parametro: 'Valor del parámetro',
             mi_parametro: {
                 valor_texto: $('#mi-valor').val(),
                 user_id: $('#user-id').val()

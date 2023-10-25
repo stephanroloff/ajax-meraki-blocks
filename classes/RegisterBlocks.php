@@ -32,6 +32,7 @@ if(! class_exists('AjaxMerakiBlocks\RegisterBlocks')){
 
             register_block_type( $parent_directory . '/build/ajax-get-block' );
             register_block_type( $parent_directory . '/build/ajax-get-rest-block' );
+            register_block_type( $parent_directory . '/build/ajax-get-db-block' );
             register_block_type( $parent_directory . '/build/ajax-post-db-block' );
         }
     }

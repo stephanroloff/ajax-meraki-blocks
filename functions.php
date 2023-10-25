@@ -29,3 +29,4 @@
  $RegisterBlocks = new RegisterBlocks();
  $AjaxGetFromRestApi = new AjaxGetFromRestApi();
  $AjaxPostToDatabase = new AjaxPostToDatabase();
+ $AjaxGetFromDatabase = new AjaxGetFromDatabase();
