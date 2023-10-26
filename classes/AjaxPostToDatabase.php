@@ -13,7 +13,7 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
         }
 
         function post_data_to_usermeta() {
-            check_ajax_referer('mi-ajax-nonce', 'security');
+            check_ajax_referer('my-ajax-nonce', 'security');
             $mi_parametro = $_POST['mi_parametro'];
             $this->saveData($mi_parametro);
             wp_die();

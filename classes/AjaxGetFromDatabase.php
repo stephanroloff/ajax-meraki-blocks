@@ -13,11 +13,11 @@ if(! class_exists('AjaxMerakiBlocks\AjaxGetFromDatabase')){
         }
 
         function get_data_from_usermeta() {
-            $user_id = get_current_user_id();
-            $meta_key = 'days_of_the_year';
+            $user = new User();
+            $user_id = $user->get_id();
             
             if ($user_id) {
-                $user_data = get_user_meta($user_id, $meta_key, true);
+                $user_data = $user->get_user_metadata_by_meta_key('days_of_the_year');
                 echo json_encode($user_data);
             } else {
                 echo 'Unauthenticated user';

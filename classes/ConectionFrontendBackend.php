@@ -28,7 +28,7 @@ if(! class_exists('AjaxMerakiBlocks\ConectionFrontendBackend')){
                 wp_enqueue_script('my-general-script', MY_PLUGIN_PATH . '/src/ajax-localize-script.js', array('jquery'), '1.0', true);
                 $my_script_vars = array(
                     'ajax_url' => admin_url('admin-ajax.php'),
-                    'security' => wp_create_nonce('mi-ajax-nonce')
+                    'security' => wp_create_nonce('my-ajax-nonce')
                 );
                 wp_localize_script('my-general-script', 'my_script_vars', $my_script_vars);
         }
