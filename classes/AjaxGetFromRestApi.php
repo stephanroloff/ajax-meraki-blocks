@@ -6,21 +6,10 @@ if(! class_exists('AjaxMerakiBlocks\AjaxGetFromRestApi')){
     class AjaxGetFromRestApi {
 
         function __construct(){
-            add_action('wp_enqueue_scripts', array($this, 'load_api_with_ajax'));
-
-            add_action('wp_ajax_load_api', array($this, 'load_data_from_api'));
-            add_action('wp_ajax_nopriv_load_api', array($this,'load_data_from_api'));
+            $ConectionFrontendBackend = new ConectionFrontendBackend('get_data_from_rest_api', array($this, 'get_data_from_rest_api'));
         }
 
-        function load_api_with_ajax() {
-            wp_enqueue_script('my-script', MY_PLUGIN_PATH . '/ajax-get-rest-block/frontend.js', array('jquery'), '1.0', true); //ARREGLAR??
-
-            wp_localize_script('my-script', 'ajax_load_api', array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-            ));
-        }
-
-        function load_data_from_api() {
+        function get_data_from_rest_api() {
 
             $api_url = 'https://pokeapi.co/api/v2/pokemon/'; 
 

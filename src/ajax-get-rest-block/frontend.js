@@ -4,16 +4,27 @@
 jQuery(document).ready(function ($) {
     $('#load-api').click(function () {
         $.ajax({
-            type: 'POST',
-            url: ajax_load_api.ajaxurl,
+            url: my_script_vars.ajax_url,
+            type: 'get',
             data: {
-                action: 'load_api'
+                action: 'get_data_from_rest_api', 
             },
-            success: function (response, textStatus, XMLHttpRequest) {
-                $('#load-response').html(response);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                $('#load-response').html(errorThrown);
+            success: function(response) {
+                let datos = JSON.parse(response);
+                let data_array = datos['results'];
+
+                // Comprueba si los datos son un array
+                if (Array.isArray(data_array)) {
+                let listaHTML = '<ul>';
+                data_array.forEach(function(dato) {
+                    listaHTML += '<li>' + dato.name + '</li>';
+                });
+                listaHTML += '</ul>';
+                
+                $('#load-response').html(listaHTML);
+                } else {
+                    $('#load-response').html('No se encontraron datos válidos.');
+                }
             }
         });
     });

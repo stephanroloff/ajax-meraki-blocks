@@ -10,8 +10,8 @@ jQuery(document).ready(function($) {
             let datos = JSON.parse(response);
             $('#loader').hide();
 
-           // Comprueba si los datos son un array
-           if (Array.isArray(datos)) {
+            // Comprueba si los datos son un array
+            if (Array.isArray(datos)) {
             let listaHTML = '<ul>';
             datos.forEach(function(dato) {
                 listaHTML += '<li>' + dato + '</li>';
@@ -19,9 +19,9 @@ jQuery(document).ready(function($) {
             listaHTML += '</ul>';
             
             $('#ajax-get-from-db').html(listaHTML);
-        } else {
-            $('#ajax-get-from-db').html('No se encontraron datos válidos.');
-        }
+            } else {
+                $('#ajax-get-from-db').html('No se encontraron datos válidos.');
+            }
         }
     });
 });
