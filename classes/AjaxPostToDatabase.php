@@ -9,10 +9,10 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
     class AjaxPostToDatabase {
 
         function __construct(){
-            $ConectionFrontendBackend = new ConectionFrontendBackend('mi_funcion_ajax', array($this, 'mi_funcion_ajax'));
+            $ConectionFrontendBackend = new ConectionFrontendBackend('mi_funcion_ajax', array($this, 'post_data_to_usermeta'));
         }
 
-        function mi_funcion_ajax() {
+        function post_data_to_usermeta() {
             check_ajax_referer('mi-ajax-nonce', 'security');
             $mi_parametro = $_POST['mi_parametro'];
             $this->saveData($mi_parametro);
