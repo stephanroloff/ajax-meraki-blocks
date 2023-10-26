@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
         event.preventDefault();
 
         var datos = {
-            action: 'mi_funcion_ajax', // Nombre de la acción en el servidor
+            action: 'post_data_to_usermeta', // Nombre de la acción en el servidor
             mi_parametro: {
                 valor_texto: $('#mi-valor').val(),
                 user_id: $('#user-id').val()

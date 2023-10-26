@@ -9,7 +9,7 @@ if(! class_exists('AjaxMerakiBlocks\AjaxPostToDatabase')){
     class AjaxPostToDatabase {
 
         function __construct(){
-            $ConectionFrontendBackend = new ConectionFrontendBackend('mi_funcion_ajax', array($this, 'post_data_to_usermeta'));
+            $ConectionFrontendBackend = new ConectionFrontendBackend('post_data_to_usermeta', array($this, 'post_data_to_usermeta'));
         }
 
         function post_data_to_usermeta() {
