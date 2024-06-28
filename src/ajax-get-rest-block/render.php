@@ -10,14 +10,17 @@
  * @var array    $context            Block context.
  */
 
+$extraFilePath = dirname(dirname(plugin_dir_path(__FILE__))) . '/components/box.php';
 $wrapper_attributes = get_block_wrapper_attributes();
 
 ?>
 <div <?php echo $wrapper_attributes?>>
     <p>THIS an Ajax GET from REST Block Block!</p>
+
     <p>Attribute: <?php echo $attributes['amountSelected']?></p>
     <button id="load-api">GET data from REST API</button>
-    <div id="load-response"></div>
+    <?php 
+    require_once($extraFilePath);
+     ?>
 </div>
     
-
